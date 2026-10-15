@@ -36,6 +36,7 @@ class GestorIncidencias {
         break;
       }
     }
+    await datos.guardar(incidencias); // Solucion de bug-001: faltaba llamar al almacen local para guardar
   }
 
   Future<void> crear(String titulo, String descripcion, String cliente,
