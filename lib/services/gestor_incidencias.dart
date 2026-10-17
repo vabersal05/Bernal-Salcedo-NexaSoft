@@ -30,8 +30,8 @@ class GestorIncidencias {
   }
 
   int contar(String estado) {
-    if (estado == 'Pendiente') return cantidadPendientes;
-    return incidencias.where((x) => x.estado == estado).length;
+    // Solución a bug-003: todo se cuenta con el mismo criterio para que corresponda
+    return incidencias.where((x) => x.estado == estado).length; 
   }
 
   Future<void> cambiarEstado(String id, String estado) async {
