@@ -42,6 +42,17 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return const Color(0xFFAC4052);
   }
 
+  Color colorPrioridad(String p) {
+  switch (p) {
+    case 'Alta':
+      return Colors.red.shade700;
+    case 'Baja':
+      return Colors.blueGrey;
+    default:
+      return Colors.orange.shade800;
+  }
+}
+
   Widget resumen(String etiqueta, String valor, IconData icono) {
     return Expanded(
       child: Card(
@@ -182,16 +193,15 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
                                         title: Text(item.titulo, style: const TextStyle(fontWeight: FontWeight.w600)),
                                         subtitle: Padding(
                                           padding: const EdgeInsets.only(top: 8),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text('${item.id}  ·  ${item.cliente}'),
-                                              const SizedBox(height: 6),
-                                              Text(item.estado, style: TextStyle(
-                                                color: colorEstado(item.estado), fontWeight: FontWeight.bold,
-                                              )),
-                                            ],
-                                          ),
+                                          child: Row(children: [
+                                            Text(item.estado, style: TextStyle(
+                                              color: colorEstado(item.estado), fontWeight: FontWeight.bold,
+                                            )),
+                                            const SizedBox(width: 14),
+                                            Text('Prioridad: ${item.prioridad}', style: TextStyle(
+                                              color: colorPrioridad(item.prioridad), fontWeight: FontWeight.w600,
+                                            )),
+                                          ]),
                                         ),
                                         trailing: const Icon(Icons.chevron_right),
                                         onTap: () => abrirDetalle(item),
